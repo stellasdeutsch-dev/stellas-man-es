@@ -323,36 +323,6 @@ h3,.h3{font-size:var(--fs-h3);font-weight:700;line-height:1.04;letter-spacing:-.
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* ============================================================
-   PAIN
-   ============================================================ */
-.painquotes{display:grid;gap:10px;margin-top:26px}
-.quote{
-  border:1px solid var(--line-d);border-radius:var(--r-md);padding:16px 18px;
-  font-size:var(--fs-sm);line-height:1.45;
-}
-.quote b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8A8D93;font-weight:600;margin-top:9px}
-@media(min-width:760px){.painquotes{grid-template-columns:repeat(3,1fr)}}
-
-.chart{margin-top:38px;display:grid;gap:22px}
-@media(min-width:900px){.chart{grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}}
-.bars{display:grid;gap:16px}
-.bar__head{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--fs-sm);font-weight:500;margin-bottom:8px;gap:14px}
-.bar__val{font-variant-numeric:tabular-nums;font-weight:700;letter-spacing:-.03em;font-size:15px;opacity:.75}
-.bar__rail{height:6px;border-radius:99px;background:rgba(255,255,255,.13);overflow:hidden}
-.sec--white .bar__rail,.sec:not(.sec--dark) .bar__rail{background:rgba(10,10,10,.09)}
-.bar__fill{height:100%;border-radius:99px;background:var(--white);width:0;transition:width 1.3s var(--ease-out)}
-.sec:not(.sec--dark) .bar__fill{background:var(--black)}
-
-.donut{display:grid;place-items:center;position:relative}
-.donut svg{width:min(78vw,320px);height:auto;transform:rotate(-90deg)}
-.donut circle{fill:none;stroke-linecap:round}
-.donut__c{stroke:rgba(255,255,255,.1)}
-.donut__v{stroke:var(--white);stroke-dasharray:0 999;transition:stroke-dasharray 1.6s var(--ease-out)}
-.donut__lbl{position:absolute;text-align:center;max-width:56%}
-.donut__lbl .n{font-size:clamp(26px,7vw,40px);font-weight:700;letter-spacing:-.045em;line-height:.98}
-.donut__lbl .t{font-size:12px;color:#9A9CA1;line-height:1.35;margin-top:6px;font-weight:500}
-
-/* ============================================================
    LESSON
    ============================================================ */
 .chapter{
@@ -417,7 +387,120 @@ h3,.h3{font-size:var(--fs-h3);font-weight:700;line-height:1.04;letter-spacing:-.
 .sec--dark .morph__row{background:rgba(255,255,255,.06)}
 .morph__case{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);font-weight:600;min-width:74px}
 .morph__word{font-size:clamp(21px,6vw,32px);font-weight:700;letter-spacing:-.04em}
-.morph__arrow{color:var(--gray-2);font-size:18px}
+
+/* ---------- visual explainers ---------- */
+.viz{
+  background:var(--white);border-radius:var(--r-md);
+  padding:20px 18px;display:grid;gap:15px;
+}
+.sec--dark .viz{background:rgba(255,255,255,.06)}
+.viz__cap{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gray);font-weight:600;margin:0;
+}
+.viz__note{font-size:var(--fs-sm);color:var(--gray);line-height:1.45;margin:0}
+.viz__note b{color:var(--black);font-weight:600}
+.sec--dark .viz__note b{color:var(--white)}
+
+/* slot rows: sentence positions as chips */
+.srow{display:grid;gap:8px}
+.srow + .srow{padding-top:14px;border-top:1px solid var(--line)}
+.srow__l{
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gray);display:flex;align-items:center;gap:8px;
+}
+.srow__l i{
+  font-style:normal;font-size:10px;letter-spacing:0;text-transform:none;
+  font-weight:600;color:var(--gray-2);
+}
+.slots{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.slot{
+  border-radius:10px;padding:9px 13px;
+  font-weight:600;font-size:var(--fs-sm);letter-spacing:-.02em;
+  background:rgba(10,10,10,.07);white-space:nowrap;
+}
+.slot--fill{background:var(--black);color:var(--white)}
+.slot--v{background:transparent;border:1.5px solid var(--black)}
+.slot--empty{
+  border:1.5px dashed var(--gray-2);background:transparent;color:var(--gray-2);
+  animation:blink 2.6s var(--ease) infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.42}}
+
+/* word morphology: Mann -> man */
+.wm{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.wm__w{
+  font-size:clamp(30px,8.4vw,50px);font-weight:700;
+  letter-spacing:-.05em;line-height:1;white-space:nowrap;
+}
+.wm__w s{opacity:.32;text-decoration-thickness:.07em}
+.wm__w u{text-decoration:none;position:relative}
+.wm__w u::after{
+  content:'';position:absolute;left:0;right:0;bottom:-.1em;height:2px;background:var(--black);
+}
+.wm__ar{color:var(--gray-2);font-size:22px;line-height:1}
+.wm__box{
+  border:1.5px dashed var(--gray-2);border-radius:14px;
+  padding:6px 14px;display:inline-flex;align-items:center;
+}
+.wm__steps{display:flex;flex-wrap:wrap;gap:6px}
+.wm__step{
+  font-size:11px;font-weight:600;letter-spacing:-.01em;color:var(--gray);
+  background:rgba(10,10,10,.05);border-radius:999px;padding:5px 11px;
+}
+
+/* case spine for man -> einen -> einem */
+.morph{position:relative;padding-left:24px}
+.morph::before{
+  content:'';position:absolute;left:6px;top:26px;bottom:26px;width:2px;
+  background:var(--line);
+}
+.sec--dark .morph::before{background:var(--line-d)}
+.morph__row{position:relative}
+.morph__row::before{
+  content:'';position:absolute;left:-23px;top:50%;transform:translateY(-50%);
+  width:10px;height:10px;border-radius:50%;background:var(--black);
+  box-shadow:0 0 0 4px var(--white);
+}
+.sec--dark .morph__row::before{background:var(--white);box-shadow:0 0 0 4px var(--black)}
+.morph__q{margin-left:auto;font-size:12px;color:var(--gray);font-weight:600}
+
+/* use-case grid for es */
+.uses{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+.use{background:rgba(10,10,10,.055);border-radius:14px;padding:13px 14px;display:grid;gap:2px;min-width:0}
+.sec--dark .use{background:rgba(255,255,255,.07)}
+.use__k{
+  font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--gray);font-weight:700;margin-bottom:5px;
+}
+.use__d{font-weight:700;letter-spacing:-.025em;font-size:var(--fs-sm);word-break:break-word}
+.use__r{font-size:12px;color:var(--gray);line-height:1.3}
+
+/* position rail: the verb-second law */
+.vf{display:grid;gap:11px}
+.vf__cands{display:flex;flex-wrap:wrap;gap:6px}
+.vf__cand{
+  border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;
+  font-size:12px;font-weight:600;letter-spacing:-.01em;
+}
+.sec--dark .vf__cand{border-color:var(--line-d)}
+.vf__cand b{font-weight:700}
+.vf__down{color:var(--gray-2);font-size:18px;text-align:center;line-height:1}
+.posrail{display:flex;gap:6px;align-items:stretch}
+.pos{
+  flex:1;border-radius:13px;padding:12px 11px;
+  background:rgba(10,10,10,.06);display:grid;gap:3px;min-width:0;
+}
+.sec--dark .pos{background:rgba(255,255,255,.07)}
+.pos--lock{background:var(--black);color:var(--white)}
+.sec--dark .pos--lock{background:var(--white);color:var(--black)}
+.pos__n{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gray)}
+.pos--lock .pos__n{color:rgba(255,255,255,.62)}
+.sec--dark .pos--lock .pos__n{color:rgba(10,10,10,.55)}
+.pos__t{font-weight:700;letter-spacing:-.025em;font-size:13px;line-height:1.15}
+.pos__d{font-size:11px;color:var(--gray);line-height:1.28}
+.pos--lock .pos__d{color:rgba(255,255,255,.66)}
+.sec--dark .pos--lock .pos__d{color:rgba(10,10,10,.6)}
 
 /* word-order machine */
 .wo{background:var(--black);color:var(--white);border-radius:var(--r-lg);padding:22px 18px;display:grid;gap:16px}

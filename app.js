@@ -4,7 +4,7 @@
 
 /* ---- ССЫЛКИ: поменяй здесь, и они подставятся во все кнопки ---- */
 const LINKS = {
-  telegram : 'https://t.me/stellas_deutsch',
+  checkout : 'https://app.lava.top/801303618?tabId=products&sort=published',
   instagram: 'https://instagram.com/stellas_deutsch'
 };
 
@@ -17,7 +17,7 @@ if (HAS_IO && !reduce) document.documentElement.classList.add('rv');
 
 /* ---------- ссылки ---------- */
 document.querySelectorAll('[data-cta]').forEach(a => {
-  if (a.getAttribute('href') === '#') { a.href = LINKS.telegram; a.target = '_blank'; a.rel = 'noopener'; }
+  a.href = LINKS.checkout; a.target = '_blank'; a.rel = 'noopener';
 });
 document.querySelectorAll('[data-ig]').forEach(a => {
   a.href = LINKS.instagram; a.target = '_blank'; a.rel = 'noopener';
